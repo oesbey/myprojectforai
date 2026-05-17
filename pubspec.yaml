@@ -1,0 +1,32 @@
+name: runo_live
+description: Runo Live sosyal eglence uygulamasi.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  
+  # ELI5: Sürümleri "any" yaptık. Flutter kavga etmeyen sürümleri otomatik seçecek.
+  lottie: any
+  svgaplayer_flutter: any
+  video_player: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/animations/svga/
+    #- assets/animations/lottie/
+    #- assets/animations/webm/
+    #- assets/animations/png/
