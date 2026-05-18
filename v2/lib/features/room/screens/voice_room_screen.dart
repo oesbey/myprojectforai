@@ -4,6 +4,7 @@ import 'package:runo_live/features/room/widgets/pk_score_bar.dart';
 import 'package:runo_live/features/room/widgets/gift_bottom_sheet.dart';
 import 'package:runo_live/features/room/models/gift_model.dart';
 import 'package:runo_live/features/room/widgets/gift_animation_player.dart';
+import 'package:runo_live/features/room/widgets/room_chat_list.dart';
 
 class VoiceRoomScreen extends StatefulWidget {
   const VoiceRoomScreen({super.key});
@@ -45,10 +46,13 @@ class _VoiceRoomScreenState extends State<VoiceRoomScreen> {
       backgroundColor: const Color(0xFF0F0B21),
       body: Stack(
         children: [
+          // 1. ARKA PLAN
           Positioned.fill(
             child: Image.asset('assets/images/oda_arkaplan.png',
                 fit: BoxFit.cover),
           ),
+
+          // 2. PK GRADYANI
           if (isPkModeActive)
             Positioned.fill(
               child: Row(
@@ -82,52 +86,71 @@ class _VoiceRoomScreenState extends State<VoiceRoomScreen> {
             )
           else
             Positioned.fill(child: Container(color: Colors.black45)),
+
+          // 3. UI (İÇERİK)
           SafeArea(
             child: Column(
               children: [
                 _buildRichHeader(context),
                 if (isPkModeActive) const PkScoreBar(),
+
                 const SizedBox(height: 15),
+
+                // --- ÜST 2 KOLTUK (BÜYÜK BOYUT: 75) ---
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    MicSeat(index: 0, userName: "Sahip", isLocked: false),
-                    MicSeat(index: 1, userName: "VIP", isLocked: true),
+                    MicSeat(
+                        index: 0, userName: "Sahip", isLocked: false, size: 75),
+                    MicSeat(
+                        index: 1, userName: "VIP", isLocked: true, size: 75),
                   ],
                 ),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: GridView.builder(
-                      itemCount: 8,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 0.85,
-                      ),
-                      itemBuilder: (context, index) =>
-                          MicSeat(index: index + 2),
+
+                const SizedBox(height: 15),
+
+                // --- ALT 8 KOLTUK (NORMAL BOYUT: 55) ---
+                // ELI5: Expanded komutunu buradan kaldırdık! Artık koltuklar sündürülüp chat'in altına taşmayacak.
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GridView.builder(
+                    itemCount: 8,
+                    shrinkWrap:
+                        true, // Grid'i sadece içindeki koltuklar kadar yer kaplamaya zorlar
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing:
+                          10, // Dikey boşluğu azalttık ki alta taşmasın
+                      crossAxisSpacing: 5,
+                      childAspectRatio:
+                          0.80, // Koltukların dikey uzamasını durdurduk
                     ),
+                    itemBuilder: (context, index) =>
+                        MicSeat(index: index + 2, size: 55),
                   ),
                 ),
+
+                const SizedBox(height: 10),
+
+                // --- SOHBET (CHAT) ALANI ---
+                // ELI5: Expanded'ı buraya verdik. Artık koltuklardan artan boşluk ne kadarsa, Chat alanı otomatik o kadar yer kaplayacak. Asla üst üste binmeyecekler!
+                const Expanded(
+                  child: RoomChatList(),
+                ),
+
+                // --- ALT KONTROLLER ---
                 _buildBottomControls(),
               ],
             ),
           ),
+
+          // 4. KATMAN: TAM EKRAN HEDİYE ANİMASYONU
           if (activeGift != null)
             Positioned.fill(
               child: IgnorePointer(
-                child: Center(
-                  child: SizedBox(
-                    width: 400,
-                    height: 400,
-                    child: GiftAnimationPlayer(gift: activeGift!),
-                  ),
-                ),
+                child: GiftAnimationPlayer(gift: activeGift!),
               ),
             ),
         ],

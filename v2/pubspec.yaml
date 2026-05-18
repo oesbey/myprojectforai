@@ -11,10 +11,12 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   
-  # ELI5: Sürümleri "any" yaptık. Flutter kavga etmeyen sürümleri otomatik seçecek.
+  # ÇOKLU FORMAT MOTORLARIMIZ (Eksiksiz Liste)
   lottie: any
   svgaplayer_flutter: any
   video_player: any
+  pag: any  # YENİ: Tencent PAG Motoru Eklendi!
+  http: any
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +29,10 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/svga/
+    
+    # DİKKAT: İçi boş olan klasörleri '#' ile gizledik. 
+    # İçlerine dosya atınca başındaki '#' işaretini silebilirsin.
+    #- assets/animations/pag/
     #- assets/animations/lottie/
     #- assets/animations/webm/
     #- assets/animations/png/

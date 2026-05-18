@@ -4,41 +4,44 @@ import 'package:runo_live/features/room/models/gift_model.dart';
 class GiftBottomSheet extends StatelessWidget {
   final Function(GiftModel) onGiftSelected;
 
-  GiftBottomSheet({super.key, required this.onGiftSelected});
+  const GiftBottomSheet({super.key, required this.onGiftSelected});
 
-  // ELI5: ÇOKLU FORMAT DESTEKLİ TEST LİSTESİ!
-  // İlk sıraya senin "payton.svga" dosyanı koyduk.
-  final List<GiftModel> gifts = [
-    GiftModel(
-        id: "1",
-        name: "Payton",
-        price: 5000,
-        iconUrl: "🐎",
-        animationPath: "assets/animations/svga/payton.svga",
-        type: AnimationType.svga),
-    // Alttakiler test amaçlı dolduruldu (Klasörlerde bu dosyalar olmasa bile şablon hazır)
-    GiftModel(
-        id: "2",
-        name: "Lottie Gül",
-        price: 10,
-        iconUrl: "🌹",
-        animationPath: "assets/animations/lottie/rose.json",
-        type: AnimationType.lottie),
-    GiftModel(
-        id: "3",
-        name: "WebM Işık",
-        price: 99,
-        iconUrl: "✨",
-        animationPath: "assets/animations/webm/light.webm",
-        type: AnimationType.webm),
-    GiftModel(
-        id: "4",
-        name: "PNG Çerçeve",
-        price: 50,
-        iconUrl: "🖼️",
-        animationPath: "assets/animations/png/frame.png",
-        type: AnimationType.png),
-  ];
+  // ELI5: ÇOKLU FORMAT DESTEKLİ (5 MOTORLU) HEDİYE LİSTESİ!
+  List<GiftModel> get gifts => [
+        GiftModel(
+            id: "1",
+            name: "Payton",
+            price: 5000,
+            iconUrl: "🐎",
+            animationPath:
+                "https://raw.githubusercontent.com/oesbey/myprojectforai/main/assets/animations/svga/payton.svga",
+            type: AnimationType.svga),
+        // YENİ EKLENEN PAG HEDİYESİ ŞABLONU
+        GiftModel(
+            id: "2",
+            name: "Tencent PAG",
+            price: 10000,
+            iconUrl: "🌀",
+            // İleride kendi .pag dosyanı GitHub'a yükleyince buraya linkini koyacaksın.
+            // Şimdilik sistemin hata vermemesi için sahte bir yerel adres verdik.
+            animationPath: "assets/animations/pag/test.pag",
+            type: AnimationType.pag),
+        GiftModel(
+            id: "3",
+            name: "Lottie Gül",
+            price: 10,
+            iconUrl: "🌹",
+            animationPath:
+                "https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/LottieLogo1.json",
+            type: AnimationType.lottie),
+        GiftModel(
+            id: "4",
+            name: "PNG Çerçeve",
+            price: 50,
+            iconUrl: "🖼️",
+            animationPath: "assets/animations/png/frame.png",
+            type: AnimationType.png),
+      ];
 
   @override
   Widget build(BuildContext context) {
