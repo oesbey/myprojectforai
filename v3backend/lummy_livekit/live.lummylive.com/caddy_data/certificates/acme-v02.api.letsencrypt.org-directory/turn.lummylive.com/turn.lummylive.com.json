@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"turn.lummylive.com"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/0640f4021c0fb7d192a639c2d547ed222746",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3349975546",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-17T19:42:01Z",
+				"end": "2026-07-19T14:52:51Z"
+			},
+			"_uniqueIdentifier": "jw0TovYuftFQbDMYOF1ZjiNykco.BkD0AhwPt9GSpjnC1UftIidG",
+			"_retryAfter": "2026-05-20T05:21:18.433200359Z",
+			"_selectedTime": "2026-07-18T13:16:11Z"
+		}
+	}
+}
