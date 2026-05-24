@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # 1. SUNUCU YÖNETİCİSİ (PORTAINER - cPanel Alternatifi)
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  # 2. VERİTABANI YÖNETİCİSİ (pgAdmin - phpMyAdmin Alternatifi)
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@lummy.com
+      PGADMIN_DEFAULT_PASSWORD: LummyPassword123!
+    ports:
+      - "5050:80"
+
+  # 3. WEB KOD EDİTÖRÜ (Code-Server - FlutLab gibi Web IDE)
+  codeserver:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: codeserver
+    restart: always
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Istanbul
+      - PASSWORD=LummyCode123!
+      - SUDO_PASSWORD=LummyCode123!
+    ports:
+      - "8080:8443"
+    volumes:
+      - /root:/config/workspace
+
+volumes:
+  portainer_data:

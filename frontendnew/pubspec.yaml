@@ -1,0 +1,37 @@
+name: runo_live
+description: Lummy Party App.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  
+  lottie: any
+  video_player: any
+  audioplayers: any
+  http: any
+  livekit_client: ^2.1.0
+
+# 🚨 İŞTE KAVGAYI BİTİREN SIKIYÖNETİM! 🚨
+# ELI5: Yeni Kotlin isteyen "device_info_plus" paketinin çok uslu olan eski sürümünü zorla kurduruyoruz.
+dependency_overrides:
+  http: any
+  device_info_plus: 10.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - v2/assets/animations/mp3/
+    - v2/assets/animations/png/

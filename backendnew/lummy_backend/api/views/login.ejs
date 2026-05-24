@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lummy Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #0F0B21, #1A103C); height: 100vh; display: flex; align-items: center; justify-content: center; color: white;}
+        .login-box { background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 400px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .btn-lummy { background: linear-gradient(to right, #00E5FF, #0083B0); color: white; font-weight: bold; border: none; }
+        .btn-lummy:hover { color: white; opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+<div class="login-box text-center">
+    <h2 class="fw-bold mb-4"><i class="fa-solid fa-shield-halved" style="color:#00E5FF;"></i> Lummy Panel</h2>
+    
+    <% if (error) { %>
+        <div class="alert alert-danger" role="alert"><i class="fa-solid fa-triangle-exclamation"></i> <%= error %></div>
+    <% } %>
+
+    <form action="/admin/login" method="POST">
+        <div class="mb-3 text-start">
+            <label class="form-label text-white-50"><i class="fa-solid fa-user"></i> Kullanıcı Adı</label>
+            <input type="text" name="username" class="form-control bg-dark text-white border-secondary" required>
+        </div>
+        <div class="mb-4 text-start">
+            <label class="form-label text-white-50"><i class="fa-solid fa-lock"></i> Şifre</label>
+            <input type="password" name="password" class="form-control bg-dark text-white border-secondary" required>
+        </div>
+        <button type="submit" class="btn btn-lummy w-100 py-2"><i class="fa-solid fa-right-to-bracket"></i> Giriş Yap</button>
+    </form>
+</div>
+
+</body>
+</html>
